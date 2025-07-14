@@ -1,0 +1,116 @@
+{
+  "name": "sihilight",
+  "displayName": "SiHiLight",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.102.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "SiHiLight.addHighlight",
+        "title": "高亮选择内容",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "SiHiLight.removeAllHighlights",
+        "title": "移除所有高亮",
+        "when": "editorTextFocus"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "SiHiLight.addHighlight",
+        "key": "f8"
+      },
+      {
+        "command": "SiHiLight.removeAllHighlights",
+        "key": "f9"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "SiHiLight 插件配置",
+      "properties": {
+        "SiHiLight.colors": {
+          "type": "array",
+          "default": [
+            {
+              "light": "#00FF00",
+              "dark": "#4875bf"
+            },
+            {
+              "light": "#BF3EFF",
+              "dark": "#a115a1"
+            },
+            {
+              "light": "#00FA9A",
+              "dark": "#c27e08"
+            },
+            {
+              "light": "#00FFFF",
+              "dark": "#178f63"
+            },
+            {
+              "light": "#FF7F00",
+              "dark": "#b15e3e"
+            },
+            {
+              "light": "#FF0000",
+              "dark": "#26831c"
+            },
+            {
+              "light": "#FFD700",
+              "dark": "#196983"
+            }
+          ],
+          "description": "Oh高亮颜色配置项"
+        },
+        "SiHiLight.highlightSetting": {
+          "type": "object",
+          "default": {
+            "fullMatch": true,
+            "ignoreCase": false
+          },
+          "properties": {
+            "fullMatch": {
+              "type": "boolean",
+              "default": true,
+              "description": "是否全词匹配（仅在高亮启用时有效）"
+            },
+            "ignoreCase": {
+              "type": "boolean",
+              "default": false,
+              "description": "是否忽略大小写（仅在高亮启用时有效）"
+            }
+          }
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.102.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "eslint": "^9.25.1",
+    "typescript": "^5.8.3",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
