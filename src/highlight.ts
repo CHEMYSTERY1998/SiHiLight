@@ -76,40 +76,45 @@ export class Hightlighter {
         return Hightlighter._instance;
     }
 
-    private getSelectedTextOrWord(editor: vscode.TextEditor | undefined): string | undefined {
+    private getSelectedTextOrWord(editor: vscode.TextEditor | undefined): string[] | undefined {
         if (!editor) {
             return undefined;
         }
-        let word: string = editor.document.getText(editor.selection);
-        if (!word) {
-            // 如果没有选中文本，则获取光标所在单词
-            const range = editor.document.getWordRangeAtPosition(editor.selection.start);
-            if (range) {
-                word = editor.document.getText(range);
-            }
-        }
-        if (!word) {
-            vscode.window.showInformationMessage('Nothing selected!');
+        const selections = editor.selections;
+        if (!selections || selections.length === 0) {
+            console.error('未选择文本');
             return;
         }
-
-        return word.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1'); // 转义正则特殊字符
+        const selectedTexts = selections.map(sel => {
+            let word: string = editor.document.getText(sel);
+            if (!word) {
+                // 如果没有选中文本，则获取光标所在单词
+                const range = editor.document.getWordRangeAtPosition(sel.start);
+                if (range) {
+                    word = editor.document.getText(range);
+                }
+            }
+            return word || '';
+        });
+        return selectedTexts.map(word => word.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1'));// 转义正则特殊字符
     }
 
     public addHighLight(editor: vscode.TextEditor | undefined) {
-        let word = this.getSelectedTextOrWord(editor);
-        if (!word) {
+        let words = this.getSelectedTextOrWord(editor);
+        if (!words || words.length === 0) {
             console.warn('[Hightlighter] 没有选中任何文本');
             return;
         }
-        // 检查是否已存在该高亮，避免重复
-        const idx = this.words.findIndex((w) => w === word);
-        if (idx === -1) {
-            this.words.push(word);
-        } else {
-            this.words.splice(idx, 1);
-        }
-        this.updateDecorations();
+        words.map(word => {
+            // 检查是否已存在该高亮，避免重复
+            const idx = this.words.findIndex((w) => w === word);
+            if (idx === -1) {
+                this.words.push(word);
+            } else {
+                this.words.splice(idx, 1);
+            }
+            this.updateDecorations();
+        })
     }
 
     public removeAllHighLight(editor: vscode.TextEditor | undefined) {
