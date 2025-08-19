@@ -100,12 +100,13 @@ export class Hightlighter {
     }
 
     public addHighLight(editor: vscode.TextEditor | undefined) {
-        let words = this.getSelectedTextOrWord(editor);
-        if (!words || words.length === 0) {
+        let words:Set<string> = new Set(this.getSelectedTextOrWord(editor));
+        // 删除words重复元素
+        if (!words || words.size === 0) {
             console.warn('[Hightlighter] 没有选中任何文本');
             return;
         }
-        words.map(word => {
+        words.forEach(word => {
             // 检查是否已存在该高亮，避免重复
             const idx = this.words.findIndex((w) => w === word);
             if (idx === -1) {

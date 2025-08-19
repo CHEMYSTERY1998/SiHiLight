@@ -8,7 +8,9 @@ INFO:
 - Version: v0.0.1
   - Updates: init
   - Date:2025/07/14
-- Version: v0.0.2
+- Version: v1.0.0
   - Updates: Support multi-line highlighting
   - Date:2025/08/15
-
+- Version: v1.0.1
+  - UPdates: Fix selecting two words at the same time triggering add
+  - Date:2025/08/20
