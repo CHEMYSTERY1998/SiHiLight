@@ -2,7 +2,7 @@
   "name": "sihilight",
   "displayName": "SiHiLight",
   "description": "",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "engines": {
     "vscode": "^1.82.0"
   },
@@ -22,6 +22,11 @@
         "command": "SiHiLight.removeAllHighlights",
         "title": "移除所有高亮",
         "when": "editorTextFocus"
+      },
+      {
+        "command": "SiHiLight.copyHighlightWords",
+        "title": "复制所有高亮单词到粘贴板",
+        "when": "editorTextFocus"
       }
     ],
     "keybindings": [
@@ -32,6 +37,10 @@
       {
         "command": "SiHiLight.removeAllHighlights",
         "key": "f9"
+      },
+      {
+        "command": "SiHiLight.copyHighlightWords",
+        "key": "alt+f8"
       }
     ],
     "configuration": {

@@ -100,7 +100,7 @@ export class Hightlighter {
     }
 
     public addHighLight(editor: vscode.TextEditor | undefined) {
-        let words:Set<string> = new Set(this.getSelectedTextOrWord(editor));
+        let words: Set<string> = new Set(this.getSelectedTextOrWord(editor));
         // 删除words重复元素
         if (!words || words.size === 0) {
             console.warn('[Hightlighter] 没有选中任何文本');
@@ -121,6 +121,20 @@ export class Hightlighter {
     public removeAllHighLight(editor: vscode.TextEditor | undefined) {
         this.words = [];
         this.updateDecorations();
+    }
+
+    public copyHighlightWords() {
+        if (!this.words || this.words.length === 0) {
+            vscode.window.showInformationMessage('没有高亮单词可复制');
+            return;
+        }
+        let text:string = this.words.join('\n');
+        text += '\n';
+        vscode.env.clipboard.writeText(text).then(() => {
+            vscode.window.showInformationMessage('高亮单词已复制到粘贴板');
+        }, (err) => {
+            vscode.window.showErrorMessage('复制高亮单词失败: ' + err);
+        });
     }
 
     public updateDecorations(active?: boolean) {

@@ -14,3 +14,6 @@ INFO:
 - Version: v1.0.1
   - UPdates: Fix selecting two words at the same time triggering add
   - Date:2025/08/20
+- Version: v1.1.0
+  - Updates:Copy all highlighting words to clipboard
+  - Date:2025/09/06

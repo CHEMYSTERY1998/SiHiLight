@@ -15,7 +15,11 @@ export function activate(context: vscode.ExtensionContext) {
 		Hightlighter.getInstance().removeAllHighLight(vscode.window.activeTextEditor);
 	});
 
-	context.subscriptions.push(addHighLight, removeAllHighlights);
+	const copyHighlightWords = vscode.commands.registerCommand('SiHiLight.copyHighlightWords', () => {
+		Hightlighter.getInstance().copyHighlightWords();
+	});
+
+	context.subscriptions.push(addHighLight, removeAllHighlights, copyHighlightWords);
 }
 
 // This method is called when your extension is deactivated
