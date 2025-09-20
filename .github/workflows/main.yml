@@ -33,3 +33,6 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         files: '*.vsix'
         generate_release_notes: true
+
+    - name: Publish to VS Code Marketplace
+      run: vsce publish --pat ${{ secrets.VSCE_PAT }}
