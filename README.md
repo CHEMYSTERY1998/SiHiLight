@@ -3,7 +3,7 @@
 - F8 to add highlight
 - F9 to cancel all highlight
 - Support multi-line highlighting
-- alt + F8 to copy all highlighting words to clipboard 
+- alt + F8 to copy all highlighting words to clipboard
 -----------------
 INFO:
 - Version: v0.0.1
@@ -18,3 +18,6 @@ INFO:
 - Version: v1.1.0
   - Updates:Copy all highlighting words to clipboard
   - Date:2025/09/06
+- Version: v1.2.1
+  - Updates: add some c/cpp theme
+  - Date:2025/11/21

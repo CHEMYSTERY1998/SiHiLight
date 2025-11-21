@@ -2,7 +2,7 @@
   "name": "sihilight",
   "displayName": "SiHiLight",
   "description": "",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "publisher": "CHEMYSTERY1998",
   "repository": {
     "type": "git",
@@ -106,7 +106,29 @@
           }
         }
       }
-    }
+    },
+    "themes": [
+      {
+        "label": "Dark VS",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dark_vs.json"
+      },
+      {
+        "label": "Light VS",
+        "uiTheme": "vs",
+        "path": "./theme/light_vs.json"
+      },
+      {
+        "label": "SI Dark",
+        "uiTheme": "vs-dark",
+        "path": "./theme/si_dark.json"
+      },
+      {
+        "label": "SI Light",
+        "uiTheme": "vs",
+        "path": "./theme/si_light.json"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
