@@ -21,3 +21,6 @@ INFO:
 - Version: v1.2.1
   - Updates: add some c/cpp theme
   - Date:2025/11/21
+- Version: v1.2.2
+  - Updates: fix variable scope
+  - Date:2025/12/08

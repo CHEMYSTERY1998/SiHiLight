@@ -213,22 +213,16 @@
             "foreground": "#52A3D3",
             "fontStyle": "bold"
         },
-        "variable.fileScope:c": {
+        "variable.global:c": {
             "foreground": "#008B8B"
         },
-        "variable.fileScope:cpp": {
+        "variable.global:cpp": {
             "foreground": "#008B8B"
         },
-        "variable.globalScope:c": {
-            "foreground": "#008B8B"
-        },
-        "variable.globalScope:cpp": {
-            "foreground": "#008B8B"
-        },
-        "variable.functionScope:c": {
+        "variable.local:c": {
             "foreground": "#FFCC33"
         },
-        "variable.functionScope:cpp": {
+        "variable.local:cpp": {
             "foreground": "#FFCC33"
         },
         "parameter:c": {
