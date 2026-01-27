@@ -127,16 +127,6 @@
     },
     "themes": [
       {
-        "label": "Dark VS",
-        "uiTheme": "vs-dark",
-        "path": "./theme/dark_vs.json"
-      },
-      {
-        "label": "Light VS",
-        "uiTheme": "vs",
-        "path": "./theme/light_vs.json"
-      },
-      {
         "label": "SI Dark",
         "uiTheme": "vs-dark",
         "path": "./theme/si_dark.json"
