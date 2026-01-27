@@ -2,7 +2,7 @@
   "name": "sihilight",
   "displayName": "SiHiLight",
   "description": "",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "publisher": "CHEMYSTERY1998",
   "repository": {
     "type": "git",
@@ -32,8 +32,26 @@
         "command": "SiHiLight.copyHighlightWords",
         "title": "复制所有高亮单词到粘贴板",
         "when": "editorTextFocus"
+      },
+      {
+        "command": "SiHiLight.copyFileName",
+        "title": "复制文件名"
       }
     ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "SiHiLight.copyFileName",
+          "group": "1_copy"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "SiHiLight.copyFileName",
+          "group": "1_copy"
+        }
+      ]
+    },
     "keybindings": [
       {
         "command": "SiHiLight.addHighlight",

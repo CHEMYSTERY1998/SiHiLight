@@ -1,26 +1,53 @@
 # SiHiLight
-> like Source Insight's style to add highlight
-- F8 to add highlight
-- F9 to cancel all highlight
-- Support multi-line highlighting
-- alt + F8 to copy all highlighting words to clipboard
------------------
-INFO:
-- Version: v0.0.1
-  - Updates: init
-  - Date:2025/07/14
-- Version: v1.0.0
-  - Updates: Support multi-line highlighting
-  - Date:2025/08/15
-- Version: v1.0.1
-  - UPdates: Fix selecting two words at the same time triggering add
-  - Date:2025/08/20
-- Version: v1.1.0
-  - Updates:Copy all highlighting words to clipboard
-  - Date:2025/09/06
-- Version: v1.2.1
-  - Updates: add some c/cpp theme
-  - Date:2025/11/21
-- Version: v1.2.2
-  - Updates: fix variable scope
-  - Date:2025/12/08
+
+SiHiLight 是一个 VS Code 扩展，提供类似 Source Insight 的文本高亮功能。
+
+## 功能特性
+
+- F8 - 高亮选择内容或光标处单词
+- F9 - 移除所有高亮
+- Alt+F8 - 复制所有高亮单词到剪贴板
+- 支持多行高亮
+- 支持资源管理器和编辑器右键菜单复制文件名
+
+## 开发命令
+
+- `npm run compile` - 将 TypeScript 编译到 `out/` 目录
+- `npm run watch` - 监听模式编译（后台运行，默认构建任务）
+- `npm run lint` - 对 `src/` 目录运行 ESLint
+- `npm run test` - 使用 vscode-test 运行测试
+- `npm run pack` - 使用 vsce 将扩展打包为 `.vsix` 文件
+
+## 代码架构
+
+扩展采用简单的双层架构：
+
+### 入口文件: `src/extension.ts`
+- `activate(context)` - 扩展激活入口，注册命令，初始化 Hightlighter 单例
+- `deactivate()` - 扩展停载时的清理工作
+
+### 核心逻辑: `src/highlight.ts`
+`Hightlighter` 类实现单例模式，负责：
+- **装饰器管理**：为 `SiHiLight.colors` 配置中的每种颜色创建 `vscode.TextEditorDecorationType`
+- **高亮存储**：维护 `words` 数组，存储已高亮的文本模式（已做正则转义）
+- **事件监听**：编辑器/文档变化时自动刷新高亮
+- **命令方法**：
+  - `addHighLight(editor)` - 切换选中文本或光标处单词的高亮状态
+  - `removeAllHighLight(editor)` - 清除所有高亮
+  - `copyHighlightWords()` - 将所有高亮单词复制到剪贴板
+  - `updateDecorations(active?)` - 根据 `fullMatch` 和 `ignoreCase` 配置，使用正则匹配应用装饰器
+
+### 主题文件: `theme/*.json`
+- `dark_vs.json`, `light_vs.json` - VS Code 默认主题
+- `si_dark.json`, `si_light.json` - 自定义 Source Insight 风格主题
+
+## 配置项
+
+颜色和匹配行为通过 VS Code 设置配置：
+- `SiHiLight.colors` - `{light, dark}` 颜色对象数组
+- `SiHiLight.highlightSetting.fullMatch` - 全词匹配（默认: true）
+- `SiHiLight.highlightSetting.ignoreCase` - 忽略大小写（默认: false）
+
+## License
+
+[0BSD](LICENSE)
